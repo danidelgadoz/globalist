@@ -49,10 +49,10 @@ angular.module('your_app_name', [
     $ionicPlatform.on("deviceready", function () {
       // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
       // for form inputs)
-      if (window.cordova && window.cordova.plugins.Keyboard) {
-        cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
+      if (Keyboard) {
+        Keyboard.hideFormAccessoryBar(true);
 
-        window.addEventListener('native.keyboardshow', function () {
+        window.addEventListener('keyboardWillShow', function () {
           document.body.classList.add('keyboard-open');
         });
       }
