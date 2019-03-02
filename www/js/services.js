@@ -105,16 +105,9 @@ angular.module('your_app_name.services', [])
 	})
 	.factory('BackgroundGeolocationService', ['$localstorage', 'GN7_API_URL', '$cordovaNativeStorage', '$ionicPopup', '$q', '$http', function ($localstorage, GN7_API_URL, $cordovaNativeStorage, $ionicPopup, $q, $http) {
 		var callbackFn = function (location) {
-			//$http({
-			//request options to send data to server
-			//});
-			//var ide = 1234;
 			$cordovaNativeStorage.getItem('user').then(function (user) {
 				console.log(user);
 				var envio = $localstorage.get('bgenvio');
-				//$ionicPopup.alert({
-				//			     template: '['+user.id+'] BackgroundGeolocation callback:  ' + location.latitude + ',' + location.longitude
-				//		 });
 				var datos = {
 					idenvio: envio,
 					latitud: location.latitude,
@@ -134,85 +127,29 @@ angular.module('your_app_name.services', [])
 				console.log('[js] BackgroundGeolocation callback:  ' + location.latitude + ',' + location.longitude);
 			}, function (error) {
 			});
-			backgroundGeoLocation.finish();
 		},
 
-			failureFn = function (error) {
-				$ionicPopup.alert({
-					template: 'BackgroundGeoLocation error ' + JSON.stringify(error)
-				});
-				//console.log('BackgroundGeoLocation error ' + JSON.stringify(error));
-			},
+		failureFn = function (error) {
+			$ionicPopup.alert({
+				template: 'BackgroundGeoLocation error ' + JSON.stringify(error)
+			});
+		},
 
-			//Enable background geolocation
-			start = function () {
-				//save settings (background tracking is enabled) in local storage
-				window.localStorage.setItem('bgGPS', 1);
-				backgroundGeoLocation.configure(callbackFn, failureFn, {
-					desiredAccuracy: 0,//10,
-					stationaryRadius: 25,//20,
-					distanceFilter: 10,//20,
-					locationProvider: 0,
-					debug: false,
-					interval: 60000,
-					stopOnTerminate: false
-				});
-				/*backgroundGeoLocation.configure(callbackFn, failureFn, {
-					desiredAccuracy: 0,//10,
-					stationaryRadius: 1,//20,
-					distanceFilter: 1,//30,
-					locationProvider: 0,// 0 => ANDROID_DISTANCE_FILTER_PROVIDER | 1 => ANDROID_ACTIVITY_PROVIDER
-					debug: false,
-					stopOnTerminate: true
-				});*/
-				/*backgroundGeolocation.configure(callbackFn, failureFn, {
-			stationaryRadius: 50,
-			distanceFilter: 50,
-			desiredAccuracy: 10,
-			//debug: true,
-			//notificationTitle: 'Background tracking',
-			//notificationText: 'enabled',
-			//notificationIconColor: '#FEDD1E',
-			//notificationIconLarge: 'mappointer_large',
-			//notificationIconSmall: 'mappointer_small',
-			locationProvider: 0,//backgroundGeolocation.provider.ANDROID_DISTANCE_FILTER_PROVIDER,
-			interval: 10,
-			fastestInterval: 5,
-			activitiesInterval: 10,
-			stopOnTerminate: false,
-			startOnBoot: false,
-			startForeground: true,
-			stopOnStillActivity: true,
-			activityType: 'AutomotiveNavigation',
-			url: 'http://192.168.81.15:3000/locations',
-			syncUrl: 'http://192.168.81.15:3000/sync',
-			syncThreshold: 100,
-			httpHeaders: {
-				'X-FOO': 'bar'
-			},
-			pauseLocationUpdates: false,
-			saveBatteryOnBackground: false,
-			maxLocations: 100
-				});  */
-				/*backgroundGeolocation.configure(callbackFn, failureFn, {
-						desiredAccuracy: 0,
-						//notificationIconColor: '#4CAF50',
-						//notificationTitle: 'Background tracking',
-						//notificationText: 'ENABLED',
-						//notificationIconLarge: 'icon_large', //filename without extension
-						//notificationIconSmall: 'icon_small', //filename without extension
-						debug: true, // <-- enable this hear sounds for background-geolocation life-cycle.
-						stopOnTerminate: false, // <-- enable this to clear background location settings when the app terminates
-						locationProvider: backgroundGeolocation.provider.ANDROID_ACTIVITY_PROVIDER,
-						interval: 5000, // <!-- poll for position every minute
-						fastestInterval: 1000,
-						//url: 'http://server_ip:port/path',
-						//httpHeaders: {
-						//    "X-FOO": "bar"
-						//}
-				});*/
-				backgroundGeoLocation.start();
-			};
+		//Enable background geolocation
+		start = function () {
+			//save settings (background tracking is enabled) in local storage
+			window.localStorage.setItem('bgGPS', 1);
+			BackgroundGeolocation.configure({
+				desiredAccuracy: 0,//10,
+				stationaryRadius: 25,//20,
+				distanceFilter: 10,//20,
+				locationProvider: 0,
+				debug: false,
+				interval: 60000,
+				stopOnTerminate: false
+			}, callbackFn, failureFn);
+			BackgroundGeolocation.start();
+		};
 
 		return {
 			start: start,
@@ -228,15 +165,7 @@ angular.module('your_app_name.services', [])
 			// Stop data tracking
 			stop: function () {
 				window.localStorage.setItem('bgGPS', 0);
-				/*backgroundGeoLocation.configure(callbackFn, failureFn, {
-				desiredAccuracy: 10,
-				stationaryRadius: 20,
-				distanceFilter: 30,
-				locationProvider: 0,
-				debug: false,
-				stopOnTerminate: true
-			});*/
-				backgroundGeoLocation.stop();
+				BackgroundGeolocation.stop();
 			}
 		}
 	}])
