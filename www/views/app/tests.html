@@ -1,0 +1,38 @@
+<ion-view class="feeds-categories-view" hide-back-button="true">
+  <ion-nav-buttons side="left">
+    <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+  </ion-nav-buttons>
+  <ion-nav-title>
+    <span>Selección de Estado</span>
+  </ion-nav-title>
+  <ion-content>
+  <style>
+.row, .scroll {
+  height: 100%;
+}
+</style>
+<div class="row row-center">
+      <div class="col">
+      <div class="text-center">
+        <img ng-src="img/logo-name-green.png" width="33%"><br/><br/>
+      </div>
+      <p style="color:#676767;font-size: 19px;text-align: center;font-family: roboto;font-weight: 300;margin-top: -10px;">Selecciona tu estado actual</p>
+      <div ng-if="conductor.estado=='NO DISPONIBLE'">
+        <a class="md-button md-raised md-primary" style="display:block;font-size:30px;padding:32px;margin-bottom:32px;text-transform: capitalize;background-color:#4CAF50;" ng-click="disponible()">
+          Disponible
+        </a>
+        </div>
+        <div ng-if="conductor.estado=='DISPONIBLE'">        
+        <a class="md-button md-raised md-primary" style="display:block;font-size:30px;padding:32px;margin-bottom:32px;text-transform: capitalize;background-color:#E53935;" ng-click="nodisponible()">
+          No Disponible
+        </a> 
+        </div>   
+        <div ng-if="user.usuario.tipo_usuario=='AFILIADO' && conductor.estado=='DISPONIBLE'">        
+        <a class="md-button md-raised md-primary" style="display:block;font-size:30px;padding:32px;margin-bottom:32px;text-transform: capitalize;" ng-click="ofertas()">
+          Ofertas
+        </a> 
+        </div>
+      </div>
+    </div>
+  </ion-content>
+</ion-view>

@@ -1,0 +1,36 @@
+<ion-view class="feeds-categories-view" hide-back-button="true">
+    <ion-nav-buttons side="left">
+    <button class="button button-icon icon ion-android-arrow-back" ui-sref="app.productos({id:{{idp}}})"></button>
+  </ion-nav-buttons>
+  <ion-nav-title>
+    <span>Estado de Producto</span>
+  </ion-nav-title>
+  <ion-content overflow-scroll="false" padding="true">
+<div class="list" style="height:100vh;">
+<div class="item"><span style="font-weight: bold;">{{producto.nombre}}</span></div>
+<div ng-repeat="opcion in opciones">
+<ion-radio ng-model="producto.idestado_producto" ng-value="{{opcion.idestado_producto}}"><span style="font-size:75%">{{opcion.nombre}}</span></ion-radio>
+</div>
+  <label class="item item-input item-floating-label" style="    border: none;">
+    <span class="input-label">Observaciones</span>
+    <textarea placeholder="Observaciones" style="width:98%;resize: none;
+    height: 43vh;" rows="5" ng-model="producto.observaciones_estado"></textarea>
+  </label>
+
+<div style="position: absolute;
+    bottom: 68px;
+    width: 100%;">
+
+<a class="md-button md-raised md-primary" style="display:block;margin-top: 10%;
+    height: 50px;padding-top: 7px;" ng-click="guardar()" ng-disabled="!producto.idestado_producto">
+          Guardar
+        </a>
+        <a class="md-button md-raised md-primary" style="display:block;height: 50px;
+    padding-top: 8px;" ng-click="cancelar()">
+          Cancelar
+        </a> 
+</div>
+
+</div>    
+  </ion-content>
+</ion-view>

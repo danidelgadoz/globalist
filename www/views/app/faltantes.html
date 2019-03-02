@@ -1,0 +1,48 @@
+<ion-view class="feeds-categories-view" hide-back-button="true" >
+    <ion-nav-buttons side="left">
+    <button class="button button-icon icon ion-android-arrow-back" ui-sref="app.productos({id:{{idp}}})"></button>
+  </ion-nav-buttons>
+  <ion-nav-title>
+    <span>Productos Faltantes</span>
+  </ion-nav-title>
+  <ion-content overflow-scroll="false" padding="true" >
+
+<div style="height: 100vh; padding-top:30px;">
+
+  <div class="item">
+                  <h2>{{producto.nombre}}</h2>
+                  <!--<p>Precio: S/. {{producto.precio}}</p>-->
+                  </div>
+                  <div layout="row">
+        <md-input-container>
+          <label>Cantidad</label>
+          <input type="number" ng-model="producto.faltantes">
+        </md-input-container>
+        <md-input-container>
+          <label>Unidad</label>
+          <md-select ng-model="producto.faltantes_unidad">
+            <md-option ng-if="producto.unidad_medida" value="{{producto.unidad_medida}}">{{producto.unidad_medida}}</md-option>
+            <md-option ng-if="producto.sub_unidad_medida" value="{{producto.sub_unidad_medida}}">{{producto.sub_unidad_medida}}</md-option>
+          </md-select>
+        </md-input-container>
+      </div>
+                <md-input-container class="md-block" >
+          <label>Observaciones</label>
+          <textarea rows="5" ng-model="producto.observacion_faltantes"></textarea>
+        </md-input-container>
+
+<div style="position: fixed;width: 100%;margin-top: 50px;">
+        <a class="md-button md-raised md-primary" style="  display:block;height: 46px;
+    padding-top: 7px;width: 91%;" ng-click="guardar()" ng-disabled="producto.faltantes<1||!producto.faltantes_unidad||!producto.observacion_faltantes">
+          Guardar
+        </a>
+        <a class="md-button md-raised md-primary" style="display:block;height: 46px;
+    padding-top: 6px;width: 91%;" ng-click="cancelar()">
+          Cancelar
+        </a>  
+</div>
+
+</div>
+
+  </ion-content>
+</ion-view>

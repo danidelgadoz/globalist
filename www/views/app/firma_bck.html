@@ -1,0 +1,43 @@
+<ion-view hide-back-button="true">
+    <ion-nav-buttons side="left">
+        <button class="button button-icon icon ion-close" ui-sref="app.test({id:{{id}}})"></button>
+    </ion-nav-buttons>
+
+    <ion-nav-title>
+        <span>Firma Digital</span>
+    </ion-nav-title>
+
+    <ion-content style="padding-top: 14%;" scroll="false">
+        <div style="height:100%">
+            <!--<div id="signature-pad" class="m-signature-pad">
+            <div class="m-signature-pad--body">-->
+            <canvas></canvas>
+            <!--</div>
+            </div>-->
+            <hr align="center" style="border:1px dashed black; width:90%" />
+
+
+            <div style=" position: absolute;bottom: 92px;width: 100%;">
+
+                <!--<md-button class="md-raised md-primary" style="    background-color: #003972;width:95%;height: 46px;margin-top: 50%;" ng-click="save()">
+                <span style="color:white">Guardar Firma</span>
+                </md-button>
+                <md-button class="md-raised md-primary" style="    background-color: #003972;width:95%;height: 46px;" ng-click="clear()">
+                <span style="color:white">Limpiar Firma</span>
+                </md-button>-->
+                Nombres y Apellidos
+                <input type="text" placeholder="Nombres y Apellidos" ng-model="data.nombre">
+                <a class="button button-block button-stable" style="background-color: #003972;width:95%;height: 46px;" ng-click="save()">
+                    <span style="color:white">Guardar Firma</span>
+                </a>
+
+                <a class="button button-block button-stable" style="background-color: #003972;width:95%;height: 46px;" ng-click="clear()">
+                    <span style="color:white">Limpiar Firma</span>
+                </a>
+            </div>
+
+            <img ng-show="imgURI !== undefined" ng-src="{{imgURI}}">
+        </div>
+
+    </ion-content>
+</ion-view>

@@ -1,0 +1,28 @@
+<ion-view class="feeds-categories-view" hide-back-button="true">
+    <ion-nav-buttons side="left">
+    <button class="button button-icon icon ion-android-arrow-back" ui-sref="app.envios"></button>
+  </ion-nav-buttons>
+  <ion-nav-title>
+    <span></span>
+  </ion-nav-title>
+  <ion-content>
+  <style>
+.row, .scroll {
+  height: 100%;
+}
+</style>
+<div class="row row-center">
+      <div class="col">
+        <div style="display: flex; flex-direction: column; align-items: center; margin-bottom:32px;">
+          <img ng-src="img/logo-name-green.png" width="35%">
+        </div>
+        <a class="md-button md-raised md-primary" style="width:96%;display: block;font-size:15px;min-height: 60px;padding-top: 12px;font-weight: 500;" ng-click="carga()">
+          Estados de recojo
+        </a>
+        <md-button class="md-raised md-primary" style="width:96%;font-size:15px;min-height:60px;padding-top:0px;font-weight:500;" ng-click="descarga()">
+          <span style="color:white">Estados de entrega</span>
+        </md-button>            
+      </div>
+    </div>
+  </ion-content>
+</ion-view>

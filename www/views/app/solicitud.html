@@ -1,0 +1,29 @@
+<ion-view hide-back-button="true" class="login-view">
+  <ion-nav-buttons side="left">
+    <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+    <button class="button button-icon icon ion-android-arrow-back" ui-sref="app.tests"></button>
+  </ion-nav-buttons>
+  <ion-nav-title>
+    <span>Solicitud de Transporte</span>
+  </ion-nav-title>
+  <ion-content overflow-scroll="false" padding="false" style="background:#F0F8FF">
+  <div class="item card item-icon-right" ng-repeat="(key, envio) in envios" style="padding:12px 20px;">
+                  <div ng-click="incidente(key)">
+                  <h1>{{envio.ofertaenvio.costo_simbolo_moneda}} {{envio.ofertaenvio.costo | number:2}} </h1>
+                  <h2>{{envio.ofertaenvio.descripcion}}</h2>
+                  <p>{{envio.ofertaenvio.fecha_creacion | date:"dd/MM/yyyy h:mma"}}</p>
+                  <i class="icon ion-ios-arrow-forward"></i>
+                  </div> 
+                  </div>    
+
+    <div class="item card item-icon-right" ng-if="envios.length==0" style="width:100%;padding: 20px;margin:0;">
+      <div class="text-center" style="padding-bottom: 6px;">
+        No tienes envíos asignados
+              </div>
+        <md-button class="md-raised md-primary" style="width:96%" ng-click="buscar()">
+          <span style="color:white">Buscar de nuevo</span>
+        </md-button> 
+                  </div> 
+
+  </ion-content>
+</ion-view>

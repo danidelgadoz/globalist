@@ -1,0 +1,46 @@
+<ion-view hide-back-button="true" class="login-view">
+    <ion-nav-buttons side="left">
+    <button class="button button-icon icon ion-android-arrow-back" ui-sref="app.envios"></button>
+  </ion-nav-buttons>
+  <ion-nav-title>
+    <span>Registro de Guías de Remisión</span>
+  </ion-nav-title>
+  <ion-content has-header="true" padding="false">
+            <md-tabs md-dynamic-height md-center-tabs md-stretch-tabs class="md-primary"  md-selected="envio.selected_tab" >
+               <md-tab id="tab1">
+                  <md-tab-label><span style="color:white">Recibidas</span></md-tab-label>
+                  <md-tab-body>                  
+                  <md-input-container class="md-block" style="margin: 20px;margin-top: 13%;
+    margin-bottom: 13%;min-height: 180px;height: 48vh;">
+      <label>Escoge la Cantidad de Guías Recibidas</label>
+      <input ng-model="envio.guias_entregadas" type="number" step="1" ng-readonly="entre">
+    </md-input-container>
+    </md-tab-body>
+               </md-tab>
+               <md-tab id="tab2" ng-disabled="!entre">
+                  <md-tab-label><span style="color:white">Devueltas</span></md-tab-label>
+                  <md-tab-body>      
+                  <md-input-container class="md-block" style="margin: 20px;margin-top: 13%;
+    margin-bottom: 13%;min-height: 180px;height: 48vh;">
+      <label>Escoge la Cantidad de Guías Devueltas</label>
+      <input ng-model="envio.guias_devueltas" type="number" step="1" ng-readonly="devu">
+    </md-input-container>  
+    </md-tab-body>
+               </md-tab>
+            </md-tabs>
+
+<div style="    
+    position: absolute;
+    width: 100%;">
+
+<md-button class="md-raised md-primary" style="    width: 95%;
+    height: 46px;" ng-click="guardar()" ng-disabled="(envio.selected_tab==0) ? envio.guias_entregadas == null || envio.guias_entregadas < 0 || entre : ((envio.selected_tab==1) ? envio.guias_devueltas == null || envio.guias_devueltas < 0 || devu: true)">
+          <span style="color:white;">Guardar</span>
+        </md-button>
+        <a class="md-button md-raised md-primary" style="display: block;min-height: 46px;padding-top: 6px;width: 95%;" ng-click="cancelar()">
+          Cancelar
+        </a> 
+</div>
+
+  </ion-content>
+</ion-view>

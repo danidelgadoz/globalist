@@ -1,0 +1,50 @@
+<ion-side-menus enable-menu-with-back-views="false">
+  <ion-side-menu-content class="post-size-14px">
+    <ion-nav-bar class="bar app-top-bar">
+      <ion-nav-back-button>
+      </ion-nav-back-button>
+      <ion-nav-buttons side="left">
+        <button class="button button-icon button-clear ion-navicon" menu-toggle="left">
+        </button>
+      </ion-nav-buttons>
+    </ion-nav-bar>
+    <ion-nav-view name="menuContent"></ion-nav-view>
+  </ion-side-menu-content>
+
+  <ion-side-menu side="left" class="main-menu" expose-aside-when="large">
+    <ion-content style="background: #1B5E20;">
+      <div style="text-align: center;margin-top: 20%;margin-bottom: 6%;"><img src="img/logo-gray.png" style="width: 80px;"></div>
+      <ion-list>
+        <ion-item id="userInfo" class="item" nav-clear menu-close ui-sref="#" style="border: none;text-align: center;margin-bottom: 20px;">
+          <h2 class="menu-text">{{nombre}}</h2>
+          <p class="menu-text">Bienvenido</p>
+        </ion-item>
+        <ion-item class="item-icon-left" nav-clear menu-close ui-sref="app.tests" style="border: none;">
+          <i><img src="img/state.svg" style="width: 32px;float: left;margin-top: -5px;margin-right: 6px;"></i>
+          <h2 class="menu-text">Estado</h2>
+        </ion-item>
+        <!--<ion-item class="item-icon-left" nav-clear menu-close ui-sref="app.forms">
+          <i class="icon ion-radio-waves"></i>
+          <h2 class="menu-text">Account</h2>
+        </ion-item>
+        <ion-item class="item-icon-left" nav-clear menu-close ui-sref="app.stats">
+          <i class="icon ion-wand"></i>
+          <h2 class="menu-text">Statistics</h2>
+        </ion-item>
+        <ion-item class="item-icon-left" nav-clear menu-close ui-sref="app.miscellaneous">
+          <i class="icon ion-asterisk"></i>
+          <h2 class="menu-text">Miscellaneous</h2>
+        </ion-item>
+        <ion-item class="item-icon-left" nav-clear menu-close ui-sref="app.forms">
+          <i class="icon ion-document"></i>
+          <h2 class="menu-text">Forms</h2>
+        </ion-item>-->
+        <ion-item class="item-icon-left" nav-clear menu-close ui-sref="auth.walkthrough" ng-click="logout()" style="border: none;">
+          <i><img src="img/logout.svg" style="width: 26px;float: left;margin-top: -5px;margin-right: 12px;"></i>
+          <h2 class="menu-text">Cerrar sesión</h2>
+        </ion-item>
+
+    </ion-list>
+    </ion-content>
+  </ion-side-menu>
+</ion-side-menus>

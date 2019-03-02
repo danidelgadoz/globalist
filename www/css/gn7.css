@@ -1,0 +1,50 @@
+input[type="number"]{ /*material input type number*/
+  border: rgba(0,0,0,0.12);
+}
+
+/*POPUP BY PAUL*/
+.popup{
+  border-radius: 4px !important;
+}
+
+.popup-head{
+    padding-left: 27px;
+    margin-top: 9px;
+    text-align: left;
+}
+
+
+.popup-body{
+        padding-left: 24px;
+}
+
+
+.popup-buttons{
+    padding: 0;
+    min-height: 54px;
+    margin-top: 13px;
+}
+
+.popup-buttons .button{
+      background-color: #66BB6A;
+    border-radius: 0px;
+    margin-right: 0;
+    color: white;
+    border-bottom-left-radius: 4px;
+}
+
+
+.button.button-positive{
+       background-color: #43A047;
+    border-radius: 0px;
+    margin-right: 0;
+    color: white;
+    border-bottom-right-radius: 4px;
+}
+/*END POPUP BY PAUL*/
+
+
+#userInfo .item-content {
+    padding: 0;
+    padding-bottom: 16px;
+}

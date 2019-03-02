@@ -1,0 +1,77 @@
+<ion-view hide-back-button="true" class="login-view">
+    <ion-nav-buttons side="left">
+        <button ng-if="data.aceptado" menu-toggle="left" class="button button-icon icon ion-navicon">
+        <button ng-if="!data.aceptado && user.usuario.tipo_usuario == 'AFILIADO'" class="button button-icon icon ion-android-arrow-back" ui-sref="app.solicitud">  
+        <button ng-if="!data.aceptado && user.usuario.tipo_usuario != 'AFILIADO'" class="button button-icon icon ion-android-arrow-back" ui-sref="app.tests">  
+        </button>
+    </ion-nav-buttons>
+    
+    <ion-nav-title>
+        <span> {{ data.aceptado ? 'Detalles de envío ' + (estado_viaje=='Ida' ? 'iniciado' : '') : 'Detalles de pedido' }}</span>
+    </ion-nav-title>
+
+    <ion-content overflow-scroll="false" padding="false" style="background:#F0F8FF;margin-bottom:50%">
+
+        <div style="margin:18px 0;padding:0;" class="item card {{pedido_detalle.estado == 'FINALIZADO' ? 'my-disable' : ''}}" ng-repeat="(key, pedido_detalle) in envio.pedido_detalles">
+            <div style="    margin: 4px 10px 3px 10px;">
+                <!-- <p class="alignleft">GDR Nº {{pedido_detalle.numero_guia_remision}}</p> -->
+                <p class="alignright">{{pedido_detalle.tipo_pedido_detalle}}</p>
+                <div style="clear: both;"></div>  
+            </div>
+
+            <div class="item item-thumbnail-left item-icon-right" style="padding-top: 6px;padding-left: 87px;min-height: 10px;padding-bottom: 11px;">
+                <img src="img/icono-1.png" ng-click="mapa(pedido_detalle)" style="height: inherit;left: -1px;top: 0;">
+                <div ng-click="test(key)">
+                    <h2 style="padding-top: 3%;">{{pedido_detalle.ubigeocarga.CodDist}}</h2>
+                    <h2>{{pedido_detalle.ubigeodescarga.CodDist}}</h2>
+                    <i class="icon ion-ios-arrow-forward" style="font-size: 25px;"></i>
+                </div> 
+            </div>
+
+            <div style="    margin: 2% 10px 3px 10px;">
+                <p class="alignleft"><span class="enlace" ng-click="productos(key)">PRODUCTOS<span></p>
+                <p class="alignright" ng-if="data.aceptado && envio.estado_viaje_ida"><span class="enlace" ng-click="estado(key)">
+                {{pedido_detalle.pedido_detalle_estado_pedido_detalles[0].estado_pedido_detalle.nombre === undefined ? "ESTADO" : pedido_detalle.pedido_detalle_estado_pedido_detalles[0].estado_pedido_detalle.nombre}}</span></p>
+                <div style="clear: both;"></div>  
+            </div>
+        </div>
+
+
+        <div class="item card item-icon-right" ng-if="!envio" style="width:100%;padding: 20px;margin:0;">
+            <div class="text-center" style="padding-bottom: 6px;">
+            No tienes envíos asignados
+            </div>
+            <md-button class="md-raised md-primary" style="width:96%;" ng-click="buscar()">
+            <span style="color:white">Buscar de nuevo</span>
+            </md-button> 
+        </div>
+    </ion-content>
+
+    <ion-footer-bar style="height:33%;background:#F0F8FF;box-shadow: 0 0px 4px rgba(0,0,0,.55);" ng-if="envio">
+        <div class="buttons" style="display:block;width:100%" ng-if="!data.aceptado">
+            <md-button class="md-raised md-primary" style="width:96%;height:46px;" ng-click="showPopupAceptarOferta(envio.idofertaenvio)">
+                ACEPTAR ENVÍOS
+            </md-button>
+            <md-button class="md-raised md-primary" style="width:96%;height:46px;" ng-click="rechazar(envio.idofertaenvio)">
+                RECHAZAR ENVÍOS
+            </md-button>
+            <!-- <md-button class="md-raised md-primary" style="width:96%;height:46px;" ng-click="showPopup()">
+            <span style="color:white">POPUP<span>
+            </md-button> -->
+        </div>  
+        <div class="buttons" style="display:block;width:100%" ng-if="data.aceptado">
+            <!-- <a class="md-button md-raised md-primary" style="display: block;min-height: 46px;padding-top: 3px;background-color: #003972;width: 96%;" ng-click="guias()">
+            REGISTRO DE GUÍAS
+            </a> -->
+            <md-button class="md-raised md-primary" style="width:96%;min-height: 46px;" ng-click="viaje()"> <!-- ng-disabled="!entre" -->
+                ESTADO DE VIAJE
+            </md-button>
+            <md-button class="md-raised md-primary" style="width:96%;min-height: 46px;" ng-click="incidente()"> <!-- ng-disabled="!entre" -->
+                REGISTRO DE INCIDENTE
+            </md-button>
+            <!-- <md-button class="md-raised md-accent" style="width:96%;min-height: 46px;" ng-click="cancelarEnvio()"> ng-disabled="!entre"
+                <span style="color:white">CANCELAR ENVÍO</span>
+            </md-button> -->
+        </div>
+    </ion-footer-bar>
+</ion-view>

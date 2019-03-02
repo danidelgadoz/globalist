@@ -1,0 +1,84 @@
+<ion-view class="feeds-categories-view" hide-back-button="true">
+  <ion-nav-buttons side="left">
+    <button class="button button-icon icon ion-android-arrow-back" ui-sref="app.envios"></button>
+  </ion-nav-buttons>
+  <ion-nav-title>
+    <span>Pedido {{fid}}</span>
+  </ion-nav-title>
+  <ion-content overflow-scroll="false" padding="false" style="background:#F0F8FF;padding:0px !important;">
+    <!-- <div style="padding: 10px 0px 8px 0px;background-color: #1565C0;">
+      <i><img src="img/calendar.svg" class="icon-on-top"></i>
+      <span style="color:white;">{{pedido.fecha | date:'dd/MM/yyyy'}}</span>
+
+      <i><img src="img/time.svg" class="icon-on-top"></i>
+      <span style="color:white;">{{pedido.fecha | date:'HH:mm'}}</span>
+    </div> -->
+
+    <div class="row" style="margin-top: 7px;" ng-if="pedido.estado!='PREASIGNADO'">
+      <div class="col text-center" style="padding: 0;display: flex;justify-content: center;"><i ng-click="takePicture(pedido.idpedido_detalle)"><img src="img/camera.svg" style="width: 24px;"></i><p style="margin-top: 3px;margin-left: 6px;font-weight: 600;">1</p></div>
+      <div class="col text-center" style="padding: 0;border-left: 1px solid #b7b7b7;height: 23px;padding-top: 0px;border-right: 1px solid #b7b7b7;"><i ng-click="scanBarcode(pedido.idpedido_detalle)"><img src="img/scan.svg" style="width: 24px;"></i></div>
+      <div class="col text-center" style="padding: 0;"><i ng-click="sign(pedido.idpedido_detalle,id)"><img src="img/sign.svg" style="width: 24px;"></i></div>
+    </div>
+
+    <!-- <div class="item card " ng-if="user.usuario.tipo_usuario=='AFILIADO' && pedido.pedido.tipo_pago==1" style="margin: 0px 0 20px 0px;padding: 0 0 0 12px;">
+      <h2>Monto a cobrar al cliente</h2>
+      <h1 ng-if="!pedido.pedido.costo">{{pedido.total_a_cobrar_simbolo_moneda}} {{pedido.total_a_cobrar | number:2}}</h1>
+      <h1 ng-if="pedido.pedido.costo">S/. {{pedido.pedido.costo | number:2}}</h1>
+    </div> -->
+
+    <div class="item card top-pedidos" style="margin: 0px 0 20px 0px;padding: 0 0 34px 12px;">
+      <div class="item item-thumbnail-right" style="    min-height: 80px;">
+        <img src="img/icono-3.png" style="top: 0;right: 0;width: inherit;" ng-click="mapa(pedido, 'ORIGEN')">
+        <h2 style="padding-top:12%;font-size:20px;font-weight: 500;">Datos de Origen</h2>
+
+        <div ng-if="pedido.pedido.costo">
+          <p style="color: #000;font-weight: 500;font-size: 15px;text-decoration: underline;" ng-if="pedido.pedido.costo">
+            Cobrar al cliente: S/. {{pedido.pedido.costo | number:2}}
+          </p>
+        </div>
+      </div>
+
+      <div class="item item-icon-left" style="border: none;padding-left: 6px;">
+        <i><img src="img/icon-pin.svg" style="width: 32px;float: left;margin-right: 7px;margin-top: -10px;"></i>
+        <h2>{{pedido.ubigeocarga.CodDist}} - {{pedido.direccion_carga}}</h2>
+        <p>{{pedido.referencia_carga}}</p>
+      </div>
+      <div class="item item-icon-left" ng-if="pedido.contacto_nombre_carga || pedido.contacto_telefono_carga" style="border: none;padding: 4px 0 0 6px;">
+        <i><img src="img/icon-person.svg" style="width: 32px;float: left;margin-right: 7px;margin-top: -10px;"></i>
+        <h2>{{pedido.contacto_nombre_carga}}</h2>
+        <p>{{pedido.contacto_telefono_carga}}</p>
+      </div>
+      <div class="item item-icon-left" style="border: none;padding: 19px 0 0 6px;" ng-show="pedido.ventana_horaria_carga_desde || pedido.ventana_horaria_carga_hasta">
+        <i><img src="img/icon-clock.svg" style="width: 32px;float: left;margin-right: 7px;margin-top: -10px;"></i>
+        <h2>Desde {{ pedido.ventana_horaria_carga_desde | limitTo: 5 }} - Hasta {{ pedido.ventana_horaria_carga_hasta | limitTo: 5 }}</h2>
+      </div>
+    </div>
+
+    <div class="item card top-pedidos" style="margin: 20px 0px;padding: 0 0 34px 12px;">
+      <div class="item item-thumbnail-right" style="min-height: 80px;">
+        <img src="img/icono-2.png" ng-click="mapa(pedido, 'DESTINO')" style="top: 0;right: 0;width: inherit;">
+        <h2 style="padding-top:12%;font-size:20px;font-weight: 500;">Datos de Destino</h2>
+
+        <div ng-if="user.usuario.tipo_usuario=='AFILIADO' && pedido.pedido.tipo_pago==1">
+          <p style="color: #000;font-weight: 500;font-size: 15px;text-decoration: underline;">
+            Cobrar al cliente: {{pedido.total_a_cobrar_simbolo_moneda}} {{pedido.total_a_cobrar | number:2}}
+          </p>
+        </div>
+      </div>
+      <div class="item item-icon-left" style="border: none;padding-left: 6px;">
+        <i><img src="img/icon-pin.svg" style="width: 32px;float: left;margin-right: 7px;margin-top: -10px;"></i>
+        <h2>{{pedido.ubigeodescarga.CodDist}} - {{pedido.direccion_descarga}}</h2>
+        <p>{{pedido.referencia_descarga}}</p>
+      </div>
+      <div class="item item-icon-left" ng-if="pedido.contacto_nombre_descarga || pedido.contacto_telefono_descarga" style="border: none;padding: 4px 0 0 6px;">
+        <i><img src="img/icon-person.svg" style="width: 32px;float: left;margin-right: 7px;margin-top: -10px;"></i>
+        <h2>{{pedido.contacto_nombre_descarga}}</h2>
+        <p>{{pedido.contacto_telefono_descarga}}</p>
+      </div>
+      <div class="item item-icon-left" style="border: none;padding: 19px 0 0 6px;" ng-show="pedido.ventana_horaria_descarga_desde || pedido.ventana_horaria_descarga_hasta">
+        <i><img src="img/icon-clock.svg" class="icon-svg" style="width: 32px;float: left;margin-right: 7px;margin-top: -10px;"></i>
+        <h2>Desde {{pedido.ventana_horaria_descarga_desde | limitTo: 5}} - Hasta {{pedido.ventana_horaria_descarga_hasta | limitTo: 5}}</h2>
+      </div>
+    </div>
+  </ion-content>
+</ion-view>

@@ -1,0 +1,27 @@
+<ion-view class="feeds-categories-view" hide-back-button="true">
+    <ion-nav-buttons side="left">
+    <button class="button button-icon icon ion-android-arrow-back" ui-sref="app.envios"></button>
+  </ion-nav-buttons>
+  <ion-nav-title>
+    <span>Listado de productos</span>
+  </ion-nav-title>
+  <ion-content has-header="true" padding="true" style="background:#F0F8FF">
+  <div class="card" ng-repeat="(key, producto) in productos">
+  <div class="item">
+                  <h2>{{producto.nombre}}</h2>
+                  <p ng-if="producto.valor_peso">Peso: {{producto.valor_peso}} <span style="text-transform: capitalize;"> {{ producto.peso_unidad | lowercase }}</span></p>
+                  <p ng-if="producto.cantidad">Cantidad: {{producto.cantidad}}</p>
+                  <!-- <p>{{producto.cantidad}} {{producto.unidad_medida}}</p> -->
+                  <!--<p>Precio: S/. {{producto.precio}}</p>
+<a class="md-button md-raised md-primary" style="margin:0px 0px" ng-click="estado(key)">{{producto.idestado_producto}}</a>
+<a class="md-button md-raised md-primary btn-estado" style="margin:0px 0px" ng-click="estado(key)">{{producto.pedido_detalle_producto_estado_productos[0].estado_producto.nombre === undefined ? "Estado de Producto" : producto.pedido_detalle_producto_estado_productos[0].estado_producto.nombre}}</a>-->       
+  </div>       
+  
+  <!-- <div class="item" ng-if="data.aceptado">            
+    <p class="alignleft" ><span class="enlace" ng-click="faltantes(key)">FALTANTES<span></p>
+    <p class="alignright"><span class="enlace" ng-click="rechazados(key)">RECHAZADOS</span></p>
+    <div style="clear: both;"></div> 
+  </div> -->
+</div>            
+  </ion-content>
+</ion-view>

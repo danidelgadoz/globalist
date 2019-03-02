@@ -1,0 +1,26 @@
+<ion-view class="feeds-categories-view" hide-back-button="true">
+    <ion-nav-buttons side="left">
+    <button class="button button-icon icon ion-android-arrow-back" ui-sref="app.tests"></button>
+  </ion-nav-buttons>
+  <ion-nav-title>
+    <span>Busqueda no encontrada</span>
+  </ion-nav-title>
+  <ion-content style="background:#2196f3">
+  <style>
+.row, .scroll {
+  height: 100%;
+}
+</style>
+<div class="row row-center">
+      <div class="col">
+      <div class="text-center">
+        <img ng-src="img/no-envios.svg" width="25%" style="width:84px;"><br/><br/>
+        <span style="color:white">No tienes envíos asignados</span>
+              </div>
+        <md-button class="md-raised md-primary" style="width:90%;position: absolute;bottom: 0;margin-bottom: 18px;margin-left: auto;margin-right: auto;left: 0;right: 0;min-height: 42px;" ng-click="buscar()">
+          <span style="color:white">Buscar de nuevo</span>
+        </md-button>                      
+      </div>
+    </div>
+  </ion-content>
+</ion-view>

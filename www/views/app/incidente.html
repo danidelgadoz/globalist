@@ -1,0 +1,33 @@
+<ion-view class="feeds-categories-view" hide-back-button="true">
+    <ion-nav-buttons side="left">
+    <button class="button button-icon icon ion-android-arrow-back" ui-sref="app.envios"></button>
+  </ion-nav-buttons>
+  <ion-nav-title>
+    <span>Registro de Incidente</span>
+  </ion-nav-title>
+  <ion-content overflow-scroll="false" padding="true">
+<div class="list" style="    height: 100vh;">
+      <md-input-container style="margin: 20px;" class="md-block" flex-gt-sm >
+            <label>Titulo del Incidente</label>
+            <input type="text" ng-model="incidente.titulo_incidentes">
+      </md-input-container>        
+          <md-input-container  style="margin: 20px;" class="md-block">
+          <label>Detalles del Incidente</label>
+          <textarea style="width:100%" rows="5" ng-model="incidente.descripcion_incidentes"></textarea>
+        </md-input-container>
+
+
+        <div style="position:absolute;bottom: 65px;width: 100%;" class="hide-on-keyboard-open">
+
+        <md-button class="md-raised md-primary" style="width: 96%;height: 50px;" ng-click="carga()" ng-disabled=!incidente.titulo_incidentes||!incidente.descripcion_incidentes>
+                  <span style="color:white">Guardar</span>
+                </md-button>        
+                <a class="md-button md-raised md-primary" style="width:96%;display:block;height:46px;padding-top:5px;" ng-click="descarga()">
+                  Cancelar
+                </a> 
+        </div>
+
+
+</div>    
+  </ion-content>
+</ion-view>

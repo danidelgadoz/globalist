@@ -1,0 +1,36 @@
+<ion-view hide-back-button="true">
+    <ion-nav-buttons side="left">
+        <button class="button button-icon icon ion-close" ui-sref="app.test({id:{{id}}})"></button>
+    </ion-nav-buttons>
+
+    <ion-nav-title>
+        <span>Firma Digital</span>
+    </ion-nav-title>
+
+    <ion-content scroll="false">
+        <div>            
+            <canvas style="margin-top: 16px;margin-left: 32px;"></canvas>
+
+            <hr align="center" style="border:1px dashed black; width:90%" />
+
+            <md-input-container class="md-block" style="margin:40px 12px 32px 12px;">
+                <label>Nombres y Apellidos</label>
+                <input name="producto" ng-model="data.nombre">
+            </md-input-container>
+
+
+            <div layout="column" layout-align="none center" style="width: 100%; padding: 8px;">
+                <md-button class="md-raised md-primary" style="height: 46px; width: 100%; margin: 6px;" ng-click="save()">
+                    Guardar Firma
+                </md-button>
+
+                <md-button class="md-raised md-primary" style="height: 46px; width: 100%; margin: 6px;" ng-click="clear()">
+                    Limpiar Firma
+                </md-button>
+            </div>
+
+            <img ng-show="imgURI !== undefined" ng-src="{{imgURI}}">
+        </div>
+
+    </ion-content>
+</ion-view>

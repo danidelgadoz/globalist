@@ -1,0 +1,34 @@
+{
+  "name": "ngcordova-wrapper-nativestorage",
+  "description": "AngelarJS (ngCordova) wrapper for NativeStorage",
+  "author": "Gilles Callebaut <gilles.callebaut.cs@gmail.com>",
+  "main": "src/ngcordova-wrapper-nativestorage.js",
+  "keywords": [
+    "cordova",
+    "device",
+    "storage",
+    "ecosystem:cordova",
+    "cordova-android",
+    "cordova-ios",
+    "cordova-browser",
+    "LocalStorage",
+    "NSUserDefaults",
+    "SharedPreferences",
+    "ngcordova"
+  ],
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/TheCocoaProject/ngcordova-wrapper-nativestorage/issues"
+  },
+  "homepage": "https://github.com/TheCocoaProject/ngcordova-wrapper-nativestorage#README.md",
+  "_release": "c3385a3275",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "c3385a32756a8dd86ec5d2757d6c9bc6255a6ab2"
+  },
+  "_source": "git://github.com/TheCocoaProject/ngcordova-wrapper-nativestorage.git",
+  "_target": "*",
+  "_originalSource": "git://github.com/TheCocoaProject/ngcordova-wrapper-nativestorage",
+  "_direct": true
+}
