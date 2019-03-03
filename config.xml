@@ -100,5 +100,6 @@
         <variable name="GOOGLE_API_KEY_FOR_ANDROID" value="AIzaSyDSdD9RHz1vrCg7zHc03_JeYkblx1KiJiE" />
         <variable name="OKHTTP_VERSION" value="3.12.0" />
     </plugin>
+    <plugin name="cordova-plugin-camera" spec="4.0.3" />
     <engine name="android" spec="7.1.4" />
 </widget>

@@ -12,6 +12,7 @@
   "dependencies": {
     "cordova-android": "7.1.4",
     "cordova-plugin-actionsheet": "2.3.3",
+    "cordova-plugin-camera": "4.0.3",
     "cordova-plugin-device": "^2.0.2",
     "cordova-plugin-dialogs": "2.0.1",
     "cordova-plugin-insomnia": "4.3.0",
@@ -52,7 +53,8 @@
       "uk.co.workingedge.phonegap.plugin.launchnavigator": {
         "GOOGLE_API_KEY_FOR_ANDROID": "AIzaSyDSdD9RHz1vrCg7zHc03_JeYkblx1KiJiE",
         "OKHTTP_VERSION": "3.12.0"
-      }
+      },
+      "cordova-plugin-camera": {}
     },
     "platforms": [
       "android"
