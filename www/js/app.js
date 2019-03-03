@@ -57,7 +57,7 @@ angular.module('your_app_name', [
         });
       }
       if (window.StatusBar) {
-        StatusBar.styleDefault();
+        // StatusBar.styleDefault();
       }
       if (window.plugins.insomnia) {
         window.plugins.insomnia.keepAwake();
