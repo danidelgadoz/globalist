@@ -101,5 +101,8 @@
         <variable name="OKHTTP_VERSION" value="3.12.0" />
     </plugin>
     <plugin name="cordova-plugin-camera" spec="4.0.3" />
+    <plugin name="phonegap-plugin-barcodescanner" spec="8.0.1">
+        <variable name="ANDROID_SUPPORT_V4_VERSION" value="27.+" />
+    </plugin>
     <engine name="android" spec="7.1.4" />
 </widget>
