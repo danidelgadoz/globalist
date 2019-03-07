@@ -1,20 +1,5 @@
 angular.module('your_app_name.controllers', ['ngCordova.plugins.nativeStorage'])
 
-	.controller('WalkCtrl', function ($cordovaNativeStorage, $scope, $state) {
-		$cordovaNativeStorage.getItem('terminos').then(function (user) {
-			$state.go('auth.login');
-		}, function (error) {
-			console.log(error);
-		});
-		$scope.aceptar = function () {
-			$cordovaNativeStorage.setItem('terminos', 'si').
-				then(function (user) {
-					$state.go('auth.login');
-				}, function (error) {//cne
-					$ionicLoading.hide();
-				});
-		};
-	})
 	.controller('TestCtrl', function ($cordovaBarcodeScanner, $cordovaCamera, $state, $cordovaLaunchNavigator, $localstorage, $cordovaNativeStorage, $ionicPopup, $ionicLoading, GN7_API_URL, $http, $scope, $stateParams) {
 		function pad_with_zeroes(number, length) {
 			var my_string = '' + number;
