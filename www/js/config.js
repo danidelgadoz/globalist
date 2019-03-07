@@ -1,10 +1,6 @@
 angular.module('your_app_name.config', [])
-//.constant('GN7_API_URL', 'http://local.gn7.com/api/')
-//.constant('GN7_API_URL', 'http://gn7-alonso1978.rhcloud.com/api/')
-//.constant('GN7_API_URL', 'http://gn7apiv1.internovam.com/api/')
-//.constant('GN7_API_URL', 'http://gn7logistic.com/api/')
-// .constant('GN7_API_URL', 'http://104.131.62.195:4000/')
-.constant('GN7_API_URL', 'http://104.131.62.195/')
-//.constant('GN7_API_URL', 'http://apiv2.gn7logistic.com/')
+// .constant('GN7_API_URL', 'http://104.131.62.195/') // prod
+// .constant('GN7_API_URL', 'http://157.230.176.140/') // desa
+.constant('GN7_API_URL', 'http://192.168.1.2:3000/') // local
 .constant('GCM_SENDER_ID', '574597432927')
 ;
