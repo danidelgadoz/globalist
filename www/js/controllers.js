@@ -28,7 +28,6 @@ angular.module('your_app_name.controllers', ['ngCordova.plugins.nativeStorage'])
 			//console.log(user);
 			$scope.user = user;
 			$scope.nombre = user.usuario.nombre;
-			$http.defaults.headers.common.Authorization = user.token;
 		}, function (error) {
 			$cordovaNativeStorage.getItem('terminos').then(function (user) {
 				$state.go('auth.login');

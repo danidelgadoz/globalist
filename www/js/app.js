@@ -33,6 +33,9 @@ angular.module('your_app_name', [
     window.onunload = function () {
       console.log('stop app');
     }
+    $cordovaNativeStorage.getItem('user').then(function (user) {
+			$http.defaults.headers.common.Authorization = user.token;
+		});
     $cordovaNativeStorage.getItem('terminos').then(function (user) {
       $state.go('auth.login');
     }, function (error) {
