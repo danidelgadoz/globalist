@@ -77,6 +77,9 @@ angular.module('your_app_name', [
           .startInit("68a5be17-6a78-4339-967e-826350a47298")
           .endInit();
       });
+
+      BackgroundGeolocationService.listenEvents();
+      
     });
 
     // This fixes transitions for transparent background views

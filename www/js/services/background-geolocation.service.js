@@ -1,68 +1,105 @@
 angular
-    .module('your_app_name.services')
-    .factory('BackgroundGeolocationService', ['$localstorage', 'GN7_API_URL', '$cordovaNativeStorage', '$ionicPopup', '$q', '$http', function ($localstorage, GN7_API_URL, $cordovaNativeStorage, $ionicPopup, $q, $http) {
-		var callbackFn = function (location) {
+	.module('your_app_name.services')
+	.factory('BackgroundGeolocationService', ['$localstorage', 'GN7_API_URL', '$cordovaNativeStorage', '$ionicPopup', '$http', function ($localstorage, GN7_API_URL, $cordovaNativeStorage, $ionicPopup, $http) {
+
+		var runConfig = function () {
 			$cordovaNativeStorage.getItem('user').then(function (user) {
-				console.log(user);
-				var envio = $localstorage.get('bgenvio');
-				var datos = {
-					idenvio: envio,
-					latitud: location.latitude,
-					longitud: location.longitude
-				}
-				var request = $http({
-					method: "post",
+				BackgroundGeolocation.configure({
+					locationProvider: BackgroundGeolocation.DISTANCE_FILTER_PROVIDER,
+					desiredAccuracy: BackgroundGeolocation.HIGH_ACCURACY,
+					stationaryRadius: 25,
+					distanceFilter: 10,
+					debug: true,
+					interval: 10000,
+					fastestInterval: 5000,
+					activitiesInterval: 10000,
+					stopOnTerminate: false,
 					url: GN7_API_URL + 'conductor/actualizarposicion/' + user.usuario.idconductor,
-					data: datos
-				});
-				request.success(function (data) {
-					console.log(datos);
-					console.log(data);
-				}).error(function (err) {
-					console.log('error bg');
-				});
-				console.log('[js] BackgroundGeolocation callback:  ' + location.latitude + ',' + location.longitude);
-			}, function (error) {
+					httpHeaders: {
+						'Content-Type': 'application/json',
+						'Authorization': user.token,
+					},
+					postTemplate: {
+						latitud: '@latitude',
+						longitud: '@longitude'
+					}
+				}, callbackFn, failureFn);
 			});
-		},
-
-		failureFn = function (error) {
-			$ionicPopup.alert({
-				template: 'BackgroundGeoLocation error ' + JSON.stringify(error)
-			});
-		},
-
-		//Enable background geolocation
-		start = function () {
-			//save settings (background tracking is enabled) in local storage
-			window.localStorage.setItem('bgGPS', 1);
-			BackgroundGeolocation.configure({
-				desiredAccuracy: 0,//10,
-				stationaryRadius: 25,//20,
-				distanceFilter: 10,//20,
-				locationProvider: 0,
-				debug: false,
-				interval: 60000,
-				stopOnTerminate: false
-			}, callbackFn, failureFn);
-			BackgroundGeolocation.start();
 		};
+
+		var start = function () {
+			runConfig();
+			BackgroundGeolocation.start();
+
+			setTimeout(() => {
+				BackgroundGeolocation.checkStatus(function (status) {
+					console.log(`[INFO] BackgroundGeolocation service is running: `, status.isRunning);
+					console.log(`[INFO] BackgroundGeolocation services enabled: `, status.locationServicesEnabled);
+					console.log(`[INFO] BackgroundGeolocation auth status: `, status.authorization);
+				});
+			}, 1000);
+		};
+
+		var stop = function () {
+			BackgroundGeolocation.stop();
+		};
+
+		var setIdEnvioForTracking = function (idEnvio) {
+			BackgroundGeolocation.configure({
+				postTemplate: {
+					latitud: '@latitude',
+					longitud: '@longitude',
+					idenvio: idEnvio
+				}
+			});
+		};
+
+		var deleteIdEnvioForTracking = function () {
+			BackgroundGeolocation.configure({
+				postTemplate: {
+					latitud: '@latitude',
+					longitud: '@longitude'
+				}
+			});
+		};
+
+		var callbackFn = function (location) {
+			console.log('[INFO] BackgroundGeolocation configure has been successful', location);
+		};
+
+		var failureFn = function (error) {
+			$ionicPopup.alert({
+				template: '[js] BackgroundGeoLocation error ' + JSON.stringify(error)
+			});
+		};
+
+		var listenEvents = function() {
+			BackgroundGeolocation.on('location', function (location) {
+				console.log(`[INFO] BackgroundGeolocation location: `, location);
+			});
+
+			BackgroundGeolocation.on('stationary', function (stationaryLocation) {
+				console.log('[INFO] handle stationary locations here: ', stationaryLocation);
+			});
+
+			BackgroundGeolocation.on('error', function (error) {
+				console.log(`[ERROR] BackgroundGeolocation error: ${error.code, error.message}`);
+			});
+
+			BackgroundGeolocation.on('start', function () {
+				console.log('[INFO] BackgroundGeolocation service has been started');
+			});
+
+			BackgroundGeolocation.on('stop', function () {
+				console.log('[INFO] BackgroundGeolocation service has been stopped');
+			});
+		}
 
 		return {
 			start: start,
-
-			// Initialize service and enable background geolocation by default
-			init: function () {
-				var bgGPS = window.localStorage.getItem('bgGPS');
-				if (bgGPS == 1 || bgGPS == null) {
-					start();
-				}
-			},
-
-			// Stop data tracking
-			stop: function () {
-				window.localStorage.setItem('bgGPS', 0);
-				BackgroundGeolocation.stop();
-			}
+			stop: stop,
+			listenEvents: listenEvents,
+			setIdEnvioForTracking: setIdEnvioForTracking,
+			deleteIdEnvioForTracking: deleteIdEnvioForTracking
 		}
 	}])

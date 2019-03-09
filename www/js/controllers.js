@@ -645,6 +645,7 @@ angular.module('your_app_name.controllers', ['ngCordova.plugins.nativeStorage'])
 						});
 						request.success(function (data) {
 							if (data.status) {
+								BackgroundGeolocationService.deleteIdEnvioForTracking();
 								$cordovaNativeStorage.remove('aceptado').then(function (value) {
 									$localstorage.removeItem('bgenvio');
 									$state.go('app.tests');
@@ -1597,6 +1598,7 @@ angular.module('your_app_name.controllers', ['ngCordova.plugins.nativeStorage'])
 							if (data.data.data !== null) {
 								envio = data.data.data;
 								$localstorage.set('bgenvio', envio.idenvio);
+								BackgroundGeolocationService.setIdEnvioForTracking(envio.idenvio);
 								//GeoService.start($scope.user.usuario.idconductor,envio.idenvio);
 								if (envio.estado == 'ESPERA')
 									$scope.data.aceptado = false;
