@@ -24,7 +24,7 @@
       <div class="buttons-wrapper">
         <md-button class="md-raised md-primary"
           style="display:block;min-height: 46px;padding-top: 5px;margin-bottom: 4px;"
-          ng-disabled="!form.idestado_pedido_detalle || !formCarga.$valid"
+          ng-disabled="!form.idestado_pedido_detalle || !formCarga.$valid || requestStatusUpdatePending"
           type="submit">
           Guardar {{ form.idestado_pedido_detalle }}
         </md-button>
