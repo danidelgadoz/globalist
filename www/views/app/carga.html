@@ -1,29 +1,39 @@
 <ion-view class="feeds-categories-view" hide-back-button="true">
-    <ion-nav-buttons side="left">
+  <ion-nav-buttons side="left">
     <button class="button button-icon icon ion-android-arrow-back" ui-sref="app.estado({id:{{id}}})"></button>
   </ion-nav-buttons>
   <ion-nav-title>
     <span>Estados de recojo</span>
   </ion-nav-title>
-  <ion-content overflow-scroll="false" padding="true">
-<div class="list" style="height: 100vh;">
-<div ng-repeat="opcion in opciones">
-<ion-radio ng-model="form.idestado_pedido_detalle" ng-value="{{opcion.idestado_pedido_detalle}}">{{opcion.nombre}}</ion-radio>
-</div>
-  <label class="item item-input item-floating-label" style="border:none;width: 95%;margin: 0 auto;margin-bottom: 30px;margin-top: 10px;">
-    <span class="input-label">Observaciones</span>
-    <textarea placeholder="Observaciones" style="width:90%;resize: none;" rows="10" ng-model="form.observaciones"></textarea>
-  </label>
 
-<div style="bottom: 65px;width: 100%">
-<a class="md-button md-raised md-primary" style="display:block;height: 46px;padding-top: 6px;" ng-click="guardar()" ng-disabled="!form.idestado_pedido_detalle">
-          Guardar
-        </a>
-        <a class="md-button md-raised md-primary" style="display:block;height: 46px;padding-top: 6px;" ng-click="cancelar()">
+  <ion-content overflow-scroll="false" padding="true" class="one-presentation">
+    <form class="form-wrapper" name="formCarga" ng-submit="formCarga.$valid && guardar()">
+      <div class="list">
+        <div ng-repeat="opcion in opciones">
+          <ion-radio ng-model="form.idestado_pedido_detalle" ng-value="{{opcion.idestado_pedido_detalle}}">
+            {{opcion.nombre}}
+          </ion-radio>
+        </div>
+      </div>
+
+      <md-input-container class="md-block">
+        <label>Observaciones</label>
+        <input type="text" ng-model="form.observaciones">
+      </md-input-container>
+
+      <div class="buttons-wrapper">
+        <md-button class="md-raised md-primary"
+          style="display:block;min-height: 46px;padding-top: 5px;margin-bottom: 4px;"
+          ng-disabled="!form.idestado_pedido_detalle || !formCarga.$valid"
+          type="submit">
+          Guardar {{ form.idestado_pedido_detalle }}
+        </md-button>
+        <md-button class="md-raised md-primary"
+          style="display:block;min-height: 46px;padding-top: 5px;"
+          ng-click="cancelar()">
           Cancelar
-        </a> 
-</div>
-
-</div>    
+        </md-button>
+      </div>
+    </form>
   </ion-content>
 </ion-view>
