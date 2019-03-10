@@ -10,18 +10,19 @@
     <form class="form-wrapper" name="formDescarga" ng-submit="formDescarga.$valid && guardar()">
       <div class="list">
         <div ng-repeat="opcion in opciones">
-          <ion-radio ng-model="form.idestado_pedido_detalle" ng-value="{{opcion.idestado_pedido_detalle}}">
+          <ion-radio ng-model="formulario.estado" ng-value="{{opcion}}">
             {{opcion.nombre}}
           </ion-radio>
         </div>
       </div>
 
-      <md-input-container class="md-block">
+      <md-input-container class="md-block" ng-if="!formulario.estado.motivos_plantilla">
         <label>Observaciones</label>
-        <input type="text" ng-model="form.observaciones" my-enter="hideKeyboard()">
+        <input type="text" ng-model="formulario.observaciones" my-enter="hideKeyboard()">
       </md-input-container>
 
-      <!-- <md-autocomplete
+      <md-autocomplete
+        ng-if="formulario.estado.motivos_plantilla"
         required=""
         md-input-name="autocompleteField"
         md-selected-item="selectedItem"
@@ -36,17 +37,20 @@
         <md-item-template>
           <span md-highlight-text="searchText">{{item.motivo}}</span>
         </md-item-template>
+
+        <div class="hint" ng-if="!formDescarga.autocompleteField.$touched">El estado seleccionado requiere observaciones.</div>
+
         <div ng-messages="formDescarga.autocompleteField.$error">
-          <div ng-message="required">You <b>must</b> have a favorite state.</div>
-          <div ng-message="md-require-match">Please select an existing state.</div>
-          <div ng-message="minlength">Your entry is not long enough.</div>
+          <div ng-message="required">Debe ingresar observaciones.</div>
+          <div ng-message="md-require-match">Por favor ingrese una observación recomendada.</div>
+          <div ng-message="minlength"></div>
         </div>
-      </md-autocomplete> -->
+      </md-autocomplete>
 
       <div class="buttons-wrapper">
         <md-button class="md-raised md-primary"
           style="display:block;min-height: 46px;padding-top: 5px;margin-bottom: 4px;"
-          ng-disabled="!form.idestado_pedido_detalle || form.idestado_pedido_detalle<7"
+          ng-disabled="!formulario.estado || !formDescarga.$valid || requestStatusUpdatePending"
           type="submit">
           Guardar
       </md-button>

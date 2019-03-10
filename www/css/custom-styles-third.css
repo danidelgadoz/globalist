@@ -5,6 +5,17 @@ md-input-container input[type=color], md-input-container input[type=date], md-in
     border-color: rgba(0,0,0,0.12);
 }
 
+.hint {
+    position: absolute;
+    left: 2px;
+    right: auto;
+    bottom: 5px;
+    font-size: 12px;
+    line-height: 14px;
+    transition: all 0.3s cubic-bezier(0.55, 0, 0.55, 0.2);
+    color: grey;
+}
+
 .one-presentation > div:first-child {
     height: 100%;
     min-height: 100%;
@@ -17,7 +28,11 @@ form.form-wrapper {
 }
 
 form.form-wrapper .list {
-    margin-bottom: 32px
+    margin-bottom: 8px
+}
+
+form.form-wrapper .list + .md-block {
+    margin-top: 26px;
 }
 
 form.form-wrapper .buttons-wrapper {
