@@ -10,7 +10,7 @@
         <span> {{ data.aceptado ? 'Detalles de envío ' + (estado_viaje=='Ida' ? 'iniciado' : '') : 'Detalles de pedido' }}</span>
     </ion-nav-title>
 
-    <ion-content overflow-scroll="false" padding="false" style="background:#F0F8FF;margin-bottom:50%">
+    <ion-content overflow-scroll="false" padding="false" style="background:#F0F8FF;margin-bottom:42%">
 
         <div style="margin:18px 0;padding:0;" class="item card {{pedido_detalle.estado == 'FINALIZADO' ? 'my-disable' : ''}}" ng-repeat="(key, pedido_detalle) in envio.pedido_detalles">
             <div style="    margin: 4px 10px 3px 10px;">
@@ -48,7 +48,7 @@
         </div>
     </ion-content>
 
-    <ion-footer-bar style="height:33%;background:#F0F8FF;box-shadow: 0 0px 4px rgba(0,0,0,.55);" ng-if="envio">
+    <ion-footer-bar style="height:25%;background:#F0F8FF;box-shadow: 0 0px 4px rgba(0,0,0,.55);" ng-if="envio" layout="column" layout-align="center">
         <div class="buttons" style="display:block;width:100%" ng-if="!data.aceptado">
             <md-button class="md-raised md-primary" style="width:96%;height:46px;" ng-click="showPopupAceptarOferta(envio.idofertaenvio)">
                 ACEPTAR ENVÍOS
