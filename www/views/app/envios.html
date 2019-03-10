@@ -15,6 +15,7 @@
         <div style="margin:18px 0;padding:0;" class="item card {{pedido_detalle.estado == 'FINALIZADO' ? 'my-disable' : ''}}" ng-repeat="(key, pedido_detalle) in envio.pedido_detalles">
             <div style="    margin: 4px 10px 3px 10px;">
                 <!-- <p class="alignleft">GDR Nº {{pedido_detalle.numero_guia_remision}}</p> -->
+                <p ng-if="data.aceptado" style="max-width: 65%; display: inline-block; text-transform: capitalize; font-size: 11px;">{{pedido_detalle.contacto_nombre_descarga}}</p>
                 <p class="alignright">{{pedido_detalle.tipo_pedido_detalle}}</p>
                 <div style="clear: both;"></div>  
             </div>
