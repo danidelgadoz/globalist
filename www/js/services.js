@@ -381,6 +381,63 @@ angular.module('your_app_name.services', [])
 		return $cordovaLaunchNavigator;
 	}])
 
+	.service('myDateServ', function(){
+		this.dateFormat = function(d, format){
+			var r = null;
+	
+			if (d) {
+			  var dia = ((d.getDate() <= 9) ? "0"+(d.getDate()) : (d.getDate()));
+			  var mes = ((d.getMonth()+1) <= 9 ? "0"+(d.getMonth()+1) : (d.getMonth()+1));
+			  var anio =  d.getFullYear();
+			  var hora = (d.getHours() <= 9 ? "0"+d.getHours() : d.getHours());
+			  var min = (d.getMinutes() <= 9 ? "0"+d.getMinutes() : d.getMinutes());
+			  var sec = (d.getSeconds() <= 9 ? "0"+d.getSeconds() : d.getSeconds());
+			  var mesFullString = null;          
+	
+			  // console.log(format);
+			  switch(format){
+				case 'yyyy-mm-dd HH:mi:ss':
+				  r = anio + "-" + mes + "-" + dia + " " + hora + ":" + min + ":" + sec;
+				  break;
+				  case 'yyyy-mm-dd':
+				  r = anio + "-" + mes + "-" + dia;
+				  break;
+				case 'dd/mm/yyyy':
+				  r = dia  + "/" + mes + "/" + anio;
+				  break;
+				case 'dd/mm/yy HH:mi':
+				  r = dia  + "/" + mes + "/" + String(anio).slice(2) + " " + hora + ":" + min;
+				  break;       
+				case 'dd/mm HH:mi':
+				  r = dia  + "/" + mes + " " + hora + ":" + min;
+				  break;
+				case 'dd/mm':
+				  r = dia  + "/" + mes;
+				  break;
+				case 'dd mmm':
+				  r = dia + " " + getMesFullString(mes).slice(0,3);
+				  break;
+				case 'dd MM':
+				  r = dia + " " + getMesFullString(mes.toString());
+				  break;
+				case 'HH:mi':
+				  r = hora + ":" + min;
+				  break;
+				case 'HH:mi:ss':
+				  r = hora + ":" + min + ":00";
+				  break;
+				default:
+				  console.log("formato no definido");
+				  break;
+	
+			  }
+			}
+	
+			return r;
+		};
+	})
+	
+
 
 	.service('OneSignalService', function () {
 		this.app_id = "68a5be17-6a78-4339-967e-826350a47298";

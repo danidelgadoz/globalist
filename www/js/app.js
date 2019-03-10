@@ -22,6 +22,7 @@ angular.module('your_app_name', [
   //'ngMap',
   'ngResource',
   'ngMaterial',
+  'ngMessages',
   'ngCordova',
   'slugifier',
   //'firebase'
@@ -58,6 +59,12 @@ angular.module('your_app_name', [
         window.addEventListener('keyboardWillShow', function () {
           document.body.classList.add('keyboard-open');
         });
+
+        window.addEventListener('keyboardWillHide', function () {
+          document.body.classList.remove('keyboard-open');
+        });
+
+        
       }
       if (window.StatusBar) {
         // StatusBar.styleDefault(); // gives statusBar grey color
