@@ -25,7 +25,7 @@ angular
             };
 		};
 		// END[Autocomplete logic]
-		
+
 
 		var id = $stateParams.id;
 		$scope.id = $stateParams.id;
@@ -56,14 +56,15 @@ angular
                     $ionicPopup.alert({
                         template: 'Ups... hemos tenido un error'
                     });
-                });
-                $ionicLoading.hide();
-            }, function () {
+				});
+
+            }).catch(function () {
                 $ionicLoading.show({
                     template: 'No se pudo cargar los datos.',
                     duration: 3000
                 });
-            });
+			});
+			
 		}, function (error) {
 			$cordovaNativeStorage.getItem('terminos').then(function (user) {
 				$state.go('auth.login');
@@ -136,7 +137,7 @@ angular
 		
 		$scope.hideKeyboard = function(){
 			Keyboard.hide();
-		}
+		};
         
         var processEstadosRequest = function(data) {
             $scope.opciones = data.data.data;
