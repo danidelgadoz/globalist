@@ -69,9 +69,14 @@ angular
 				$ionicPopup.alert({ template: JSON.stringify(e)});
 			});
 		};
+		
 		$scope.cancelar = function () {
 			$state.go('app.estado', { id: id });
 		};
+
+		$scope.hideKeyboard = function(){
+			Keyboard.hide();
+		}
 
 		var processEstadosRequest = function(data) {
             $scope.opciones = data.data.data;
